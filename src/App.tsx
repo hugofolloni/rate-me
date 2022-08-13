@@ -1,25 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Homepage from './pages/Homepage';
+import Login from './pages/Login';
+import UserProfile from './pages/UserProfile';
+import Product from './pages/Product';
+import Category from './pages/Category';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
+
+  const HomepageProps = {
+    title: 'Homepage',
+    element: <Homepage/>,
+    path: '/'
+  };
+
+  const LoginProps = {
+    title: 'Login',
+    element: <Login/>,
+    path: '/login'
+  };
+
+  const UserProfileProps = {
+    title: 'User Profile',
+    element: <UserProfile/>,
+    path: '/user-profile'
+  };
+
+  const ProductProps = {
+    title: 'Product',
+    element: <Product/>,
+    path: '/product'
+  };
+
+  const CategoryProps = {
+    title: 'Category',
+    element: <Category/>,
+    path: '/category'
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route {...HomepageProps} />
+          <Route {...LoginProps} />
+          <Route {...UserProfileProps} />
+          <Route  {...ProductProps} />
+          <Route {...CategoryProps} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
