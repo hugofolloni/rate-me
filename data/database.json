@@ -1,0 +1,53 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Teclado Redragon Dark Avenger Lunar White",
+            "rate": 7,
+            "created": "hugofolloni",
+            "category": "gamer",
+            "comments": [
+                {
+                    "user": "hugofolloni",
+                    "text": "Bom e bonito, pena os switches quebrarem muito fácil"
+                }
+            ],
+            "image": "https://static.wixstatic.com/media/71a6c2_29be89081b784410bc51ac8728a20434~mv2.png/v1/fill/w_971,h_441,al_c,q_90,enc_auto/Dark%20avenger%20PNG.png",
+            "number_of_rates": 1
+        },
+        {
+            "id": 2,
+            "name": "Mouse Gamer Razer Viper Mini",
+            "rate": 9,
+            "created": "hugofolloni",
+            "category": "gamer",
+            "comments": [
+                {
+                    "user": "hugofolloni",
+                    "text": "Pequeno e confortável, muito bom"
+                },
+                {
+                    "user": "hugofollogua",
+                    "text": "Confortável, vale a pena!"
+                }
+            ],
+            "image": "https://images.kabum.com.br/produtos/fotos/117217/mouse-gamer-razer-viper-mini-chroma-optical-switch-6-botoes-8500dpi-rz01-03250100-r3u1_1630596362_gg.jpg",
+            "number_of_rates": 3
+        },
+        {
+            "id": 3,
+            "name": "Guitarra Squier BulletStrat HSS",
+            "rate": 10,
+            "created": "hugofolloni",
+            "category": "music",
+            "comments": [
+                {
+                    "user": "hugofolloni",
+                    "text": "Linda, visualmente e sonoramente"
+                }
+            ],
+            "image": "https://tokemusical.com.br/images/products/8761_1.jpg",
+            "number_of_rates": 1
+        }
+    ]
+}

@@ -3,6 +3,7 @@ import Login from './pages/Login';
 import UserProfile from './pages/UserProfile';
 import Product from './pages/Product';
 import Category from './pages/Category';
+import Search from './pages/Search';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -37,6 +38,12 @@ function App() {
     path: '/category'
   };
 
+  const SearchProps = {
+    title: 'Search',
+    element: <Search/>,
+    path: '/search'
+  };
+
   return (
     <Router>
       <div className="App">
@@ -46,6 +53,7 @@ function App() {
           <Route {...UserProfileProps} />
           <Route  {...ProductProps} />
           <Route {...CategoryProps} />
+          <Route {...SearchProps} />
         </Routes>
       </div>
     </Router>
@@ -53,3 +61,5 @@ function App() {
 }
 
 export default App;
+
+// JSON-SERVER:   npx json-server --watch data/database.json --port 8000   

@@ -7,3 +7,9 @@
 - de alguma forma categorizar os produtos
 - conectar com alguma API ou scrappy de algum site pra popular o banco no início 
 - usuários também podem cadastrar produtos
+
+-> to do
+- criar um sistema de autenticação -> usuários autenticados podem dar nota, escrever comentários e criar produtos
+- criar css
+- criar api e banco de dados
+- criar busca por categoria
