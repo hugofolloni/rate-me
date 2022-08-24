@@ -2,7 +2,7 @@ import {useState} from "react";
 
 const Homepage: React.FC = () => {
 
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState<string>("");
 
     const handleSearch = () => {
         window.location.href = `search?q=${search}`;
