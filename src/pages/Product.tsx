@@ -17,6 +17,23 @@ const Product: React.FC = () => {
         created: string;
         category: string;
     };
+    type Star = {
+        value: number;
+        color: string;
+    }
+
+    const [stars, setStars] = useState<Star[]>([
+        { value: 1, color: "white" },
+        { value: 2, color: "white" },
+        { value: 3, color: "white" },
+        { value: 4, color: "white" },
+        { value: 5, color: "white" },
+        { value: 6, color: "white" },
+        { value: 7, color: "white" },
+        { value: 8, color: "white" },
+        { value: 9, color: "white" },
+        { value: 10, color: "white" },
+    ]);
 
     const [product, setProduct] = useState<Product>();
 
@@ -43,7 +60,7 @@ const Product: React.FC = () => {
                 setUsername("");
             }
             else{
-                setUsername(data[0].name);
+                setUsername(data[0].username);
             }
         })
     } , []);
@@ -125,7 +142,7 @@ const Product: React.FC = () => {
             <div>
                 <p>{product?.name}</p>
                 <img src={product?.image} alt={product?.name}/>
-                <p>{Math.round(Number(product?.rate) / 2)} stars</p>
+                <p>{Math.round(Number(product?.rate)) /2} stars</p>
                 {
                     product?.comments.map(comment => (
                         <div key={comment.user + comment.comment}>
@@ -140,13 +157,29 @@ const Product: React.FC = () => {
                     <button onClick={() => handleAddComment()}>Adicionar</button>
                 </div> : <div></div>}
                 { username !== "" ? 
-                    <div>
-                        <p onClick={() => addRate(2)}>1</p>
-                        <p onClick={() => addRate(4)}>2</p>
-                        <p onClick={() => addRate(6)}>3</p>
-                        <p onClick={() => addRate(8)}>4</p>
-                        <p onClick={() => addRate(10)}>5</p>
-                    </div> : <div></div>
+                   <div className="stars" style={{display: 'flex', flexDirection: 'row'}}>
+                   {
+                       stars.map((star, index) => {
+                           return (
+                               <div key={index} onClick={() => {
+                                   const newRate = star.value
+                                   addRate(newRate);
+                                   setStars(stars.map(star => {
+                                       if(star.value > newRate){
+                                           return {...star, color: "white"};
+                                       }
+                                       else{
+                                           return {...star, color: "gold"};
+                                       }
+                                   }));
+                               }}>
+                                   <div style={{backgroundColor: star.color, border: '1px solid black', width: '10px', height:'10px'}}></div>
+                               </div>
+                           )
+                       }
+                       )
+                   }
+                   </div> : <div></div>
                 }
             </div>
         </div>

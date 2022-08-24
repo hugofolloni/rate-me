@@ -9,12 +9,10 @@
 - usuários também podem cadastrar produtos
 
 -> to do
+- criar busca por categoria
+
 - criar css
-- adicionar forma mais legal de dar estrelas
-- criar breakpoint de estrela em 0.5 
-- trocar labels 
-- pensar em todas as categorias possíveis e trocar text pra select no adicionar produto
+
+- trocar rate puro por tipo rate com nota e usuário, para o mesmo usuário não votar duas vezes
 
 - criar api e banco de dados (api só pode ser acessada com chave)
-
-- criar busca por categoria

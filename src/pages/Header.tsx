@@ -20,7 +20,7 @@ const Header: React.FC = () => {
                 setUsername("");
             }
             else{
-                setUsername(data[0].name);
+                setUsername(data[0].username);
             }
         })
     } , []);

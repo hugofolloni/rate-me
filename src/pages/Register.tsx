@@ -1,63 +1,75 @@
 import {useState} from 'react';
+import { sha1, sha256 } from 'crypto-hash';
 
 const Register: React.FC = () => {
-
-    var generateToken = () => {
-        const token1 = Math.random().toString(36)
-        const token2 = Math.random().toString(36)
-        const finalToken = token1.concat(token2)
-        fetch(`http://localhost:8000/users?token=${finalToken}`)
-        .then(res => res.json())
-        .then(data => {
-            if(data.length === 0){
-                return finalToken
-            }
-            else{
-                generateToken()
-            }
-        })
-    };
     
     const [username, setUsername] = useState<string>("")
     const [password, setPassword] = useState<string>("")
+    const [email, setEmail] = useState<string>("")
+    const [token, setToken] = useState<string>("")
 
-    const createAccount = () => {
-        fetch(`http://localhost:8000/users`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password,
-                token: generateToken()
-            })
-        })
+    const createAccount = async () => {
+        const firstToken = await sha256(username)
+        var realToken = await sha1(firstToken)
+        console.log(realToken)
+        fetch(`http://localhost:8000/users?token=${realToken}`)
         .then(res => res.json())
         .then(data => {
-            if(data.error){
-                alert(data.error)
+            if(data.length !== 0){
+                alert("Username already exists")
+                realToken = "";
             }
-            else{
-                localStorage.setItem("username", username);
-                window.location.href = "/";
-            }
-        }).catch(err => {
-            alert(err)
+        })
+        .then(() => {
+        if(realToken === ""){
+            alert("Invalid username")
         }
-        )
+        else if (username === "" || password === "" || email === ""){
+            alert("Please fill in all fields")
+        }
+        else{
+            fetch(`http://localhost:8000/users`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                    email: email,
+                    token: realToken
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.error){
+                    alert(data.error)
+                }
+                else{
+                    localStorage.setItem("token", realToken);
+                    window.location.href = "/";
+                }
+            }).catch(err => {
+                alert(err)
+            }
+            )
+        }
+    })  
     
     }
 
     return ( 
         <div>
             <h1>Register</h1>
-            <p>Please enter your username and password</p>
+            <h3>Username</h3>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
+            <h3>Email</h3>
+            <input type="email"  value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <h3>Password</h3>
             <input type="password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
             <button onClick={() => createAccount()}>Register</button>
         </div>
     );
+    	
 }
-
 export default Register;

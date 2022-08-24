@@ -36,9 +36,10 @@ const Login: React.FC = () => {
     return (
         <div>
             <h1>Login</h1>
-            <p>Please enter your username and password</p>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
-            <input type="password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <h3>Username</h3>
+            <input type="text" placeholder='login' value={username} onChange={(e) => setUsername(e.target.value)}/>
+            <h3>Password</h3>
+            <input type="password" placeholder='password'  value={password} onChange={(e) => setPassword(e.target.value)}/>
             <button onClick={() => checkLogin()}>Login</button>
             <a href="/register">Don't have an account? Register here</a>
         </div>
