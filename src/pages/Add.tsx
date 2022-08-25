@@ -46,7 +46,6 @@ const Add: React.FC = () => {
         fetch(`http://localhost:8000/products?q=${name}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data, data.length)
             if(data.length === 0){
                 exists = false;
             }
@@ -67,13 +66,15 @@ const Add: React.FC = () => {
                         image: image,
                         comments: [],
                         category: category,
-                        rate: rate,
+                        rate: [{
+                            rate: rate,
+                            user: username
+                        }],
                         number_of_rates: 1
                     })
                 })
                 .then(res => res.json())
-                .then(data => {
-                    console.log(data);
+                .then(() => {
                     window.location.href = "/";
                 }
                 )

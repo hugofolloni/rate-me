@@ -15,7 +15,6 @@ const Header: React.FC = () => {
         fetch(`http://localhost:8000/users?token=${token}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             if(data.length === 0){
                 setUsername("");
             }

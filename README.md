@@ -9,10 +9,6 @@
 - usuários também podem cadastrar produtos
 
 -> to do
-- criar busca por categoria
-
 - criar css
-
-- trocar rate puro por tipo rate com nota e usuário, para o mesmo usuário não votar duas vezes
 
 - criar api e banco de dados (api só pode ser acessada com chave)

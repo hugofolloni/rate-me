@@ -17,10 +17,18 @@ const Product: React.FC = () => {
         created: string;
         category: string;
     };
+
     type Star = {
         value: number;
         color: string;
     }
+
+    type Rate = {
+        rate: number;
+        user: string;
+    }
+
+    const [rateArray, setRateArray] = useState<Rate[]>([]);
 
     const [stars, setStars] = useState<Star[]>([
         { value: 1, color: "white" },
@@ -45,11 +53,12 @@ const Product: React.FC = () => {
             const product = data;
             var commentList: Comments [] = [];
             for(let i = 0; i < product.comments.length; i++) {
-                const comment = {user: product.comments[i].user, comment: product.comments[i].comment};
+                const comment = {user: product.comments[i].user, comment: product.comments[i].text};
                 commentList.push(comment);
             }
-            console.log(commentList)
-            setProduct({id: product.id, category: product.category, name: product.name, created: product.created, image: product.image, rate: product.rate, comments: commentList, numberOfRates: product.number_of_rates});
+            const rate = product.rate.reduce((a:number, b:Rate) => a + b.rate, 0) / product.rate.length;
+            setRateArray(product.rate);
+            setProduct({id: product.id, category: product.category, name: product.name, created: product.created, image: product.image, rate: rate, comments: commentList, numberOfRates: product.number_of_rates});
         })
 
         const token = localStorage.getItem("token");
@@ -107,14 +116,26 @@ const Product: React.FC = () => {
     }
 
     const addRate = (rate: number) => {
-        console.log(product?.id)
-        var newRate = 0
-        var newNumberOfRates = 0
-        if(product){
-            console.log("rate: " + rate + " product.rate: " + product.rate + " product.numberOfRates: " + product.numberOfRates)
-            newRate = (product?.rate * product?.numberOfRates + rate) / (product?.numberOfRates + 1);
-            newNumberOfRates = product?.numberOfRates + 1;
+        var newNumberOfRates = product?.numberOfRates;
+        var newRateArray: Rate [] = rateArray;
+        var alreadyVoted:boolean = false;
+        for(let i = 0; i < newRateArray.length; i++) {
+            if(newRateArray[i].user === username) {
+                newRateArray[i].rate = rate;
+                alreadyVoted = true;
+                break;
+            }
         }
+        if(!alreadyVoted) {
+            newRateArray.push({
+                rate: rate,
+                user: username
+            });
+            if(newNumberOfRates !== undefined) {
+                newNumberOfRates++;
+            }
+        }
+
         fetch(`http://localhost:8000/products/${product?.id}`, {
             method: "PUT",
             headers: {
@@ -127,14 +148,11 @@ const Product: React.FC = () => {
                 image: product?.image,
                 comments: product?.comments,
                 category: product?.category,
-                rate: newRate,
+                rate: newRateArray,
                 number_of_rates: newNumberOfRates
             })
         })
         .then(res => res.json())
-        .then(data => {
-            console.log(data.rate, rate, data.number_of_rates, newNumberOfRates)
-        })
     }
 
     return (

@@ -1,17 +1,16 @@
 import {useState} from 'react';
-import { sha1, sha256 } from 'crypto-hash';
+import { sha1, sha256, sha512 } from 'crypto-hash';
 
 const Register: React.FC = () => {
     
     const [username, setUsername] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [email, setEmail] = useState<string>("")
-    const [token, setToken] = useState<string>("")
 
     const createAccount = async () => {
         const firstToken = await sha256(username)
-        var realToken = await sha1(firstToken)
-        console.log(realToken)
+        const secondToken = await sha512(firstToken)
+        var realToken = await sha1(secondToken)
         fetch(`http://localhost:8000/users?token=${realToken}`)
         .then(res => res.json())
         .then(data => {

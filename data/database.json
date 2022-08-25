@@ -8,44 +8,59 @@
       "comments": [
         {
           "user": "hugofolloni",
-          "comment": "Bom e bonito, pena os switches quebrarem muito fácil"
+          "text": "Bom e bonito, pena os switches quebrarem muito fácil"
         },
         {
           "user": "hugofolloni",
-          "comment": "Muito bom!"
+          "text": "Muito bom!"
         },
         {
           "user": "hugofgua",
-          "comment": "Lindo!!!"
+          "text": "Lindo!!!"
         }
       ],
       "category": "Electronics",
-      "rate": 7.047334558823529,
-      "number_of_rates": 17
+      "rate": [
+        {
+          "rate": 9,
+          "user": "hugofolloni"
+        }
+      ],
+      "number_of_rates": 1
     },
     {
       "id": 2,
-      "name": "Mouse Eletronics Razer Viper Mini",
-      "rate": 9,
+      "name": "Mouse Gamer Razer Viper Mini",
       "created": "hugofolloni",
-      "category": "Electronics",
+      "image": "https://images.kabum.com.br/produtos/fotos/117217/mouse-Eletronics-razer-viper-mini-chroma-optical-switch-6-botoes-8500dpi-rz01-03250100-r3u1_1630596362_gg.jpg",
       "comments": [
         {
           "user": "hugofolloni",
-          "text": "Pequeno e confortável, muito bom"
-        },
-        {
-          "user": "hugofollogua",
-          "text": "Confortável, vale a pena!"
+          "text": "asd"
         }
       ],
-      "image": "https://images.kabum.com.br/produtos/fotos/117217/mouse-Eletronics-razer-viper-mini-chroma-optical-switch-6-botoes-8500dpi-rz01-03250100-r3u1_1630596362_gg.jpg",
-      "number_of_rates": 3
+      "category": "Electronics",
+      "rate": [
+        {
+          "rate": 10,
+          "user": "hugofolloni"
+        },
+        {
+          "rate": 4,
+          "user": "hugofgua"
+        }
+      ],
+      "number_of_rates": 2
     },
     {
       "id": 3,
       "name": "Guitarra Squier BulletStrat HSS",
-      "rate": 10,
+      "rate": [
+        {
+          "rate": 9,
+          "user": "hugofolloni"
+        }
+      ],
       "created": "hugofolloni",
       "category": "Music",
       "comments": [
@@ -64,11 +79,16 @@
       "comments": [
         {
           "user": "hugofgua",
-          "comment": "Bom som, mas frágil e com microfone que dá problema."
+          "text": "Bom som, mas frágil e com microfone que dá problema."
         }
       ],
       "category": "Electronics",
-      "rate": 1,
+      "rate": [
+        {
+          "rate": 9,
+          "user": "hugofolloni"
+        }
+      ],
       "number_of_rates": 1,
       "id": 4
     },
@@ -100,6 +120,13 @@
       "email": "hugofollogua07@gmail.com",
       "token": "3e694b935e00140a17e30db945e023d30fc6e31e",
       "id": 1
+    },
+    {
+      "username": "hugofgua",
+      "password": "1234",
+      "email": "12312",
+      "token": "6475d9e52c7b70c90574f6c008523ee87127eaf7",
+      "id": 2
     }
   ]
 }
