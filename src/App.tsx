@@ -1,6 +1,5 @@
 import Homepage from './pages/Homepage';
 import Login from './pages/Login';
-import UserProfile from './pages/UserProfile';
 import Product from './pages/Product';
 import Category from './pages/Category';
 import Search from './pages/Search';
@@ -21,12 +20,6 @@ function App() {
     title: 'Login',
     element: <Login/>,
     path: '/login'
-  };
-
-  const UserProfileProps = {
-    title: 'User Profile',
-    element: <UserProfile/>,
-    path: '/user-profile'
   };
 
   const ProductProps = {
@@ -66,7 +59,6 @@ function App() {
         <Routes>
           <Route {...HomepageProps} />
           <Route {...LoginProps} />
-          <Route {...UserProfileProps} />
           <Route  {...ProductProps} />
           <Route {...CategoryProps} />
           <Route {...SearchProps} />

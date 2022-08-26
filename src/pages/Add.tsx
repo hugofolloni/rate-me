@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import adding from "../assets/adding.svg"
+import { AddItemDiv, AddItemTitle, LoginImages, CategorySelector, CategorySelectorDiv, FormButton, FormItem, FormItemInput, FormItemLabel, StarDiv } from "../styles/styles";
 
 const Add: React.FC = () => {
 
@@ -14,16 +16,16 @@ const Add: React.FC = () => {
     }
 
     const [stars, setStars] = useState<Star[]>([
-        { value: 1, color: "white" },
-        { value: 2, color: "white" },
-        { value: 3, color: "white" },
-        { value: 4, color: "white" },
-        { value: 5, color: "white" },
-        { value: 6, color: "white" },
-        { value: 7, color: "white" },
-        { value: 8, color: "white" },
-        { value: 9, color: "white" },
-        { value: 10, color: "white" },
+        { value: 1, color: "#aaaaaa" },
+        { value: 2, color: "#aaaaaa" },
+        { value: 3, color: "#aaaaaa" },
+        { value: 4, color: "#aaaaaa" },
+        { value: 5, color: "#aaaaaa" },
+        { value: 6, color: "#aaaaaa" },
+        { value: 7, color: "#aaaaaa" },
+        { value: 8, color: "#aaaaaa" },
+        { value: 9, color: "#aaaaaa" },
+        { value: 10, color: "#aaaaaa" },
     ]);
 
     useEffect (() => {
@@ -74,8 +76,9 @@ const Add: React.FC = () => {
                     })
                 })
                 .then(res => res.json())
-                .then(() => {
-                    window.location.href = "/";
+                .then(data => {
+                    const id = data.id;
+                    window.location.href = `product?q=${id}`;
                 }
                 )
             }
@@ -88,52 +91,60 @@ const Add: React.FC = () => {
     const categories = ["Electronics", "Clothes", "Books", "Sports", "Music", "Games", "Decoration", "Other"];
 
     return (
-        <div>
-            <h2>Add new items</h2>
-            <p>Name</p>
-            <input type="text" placeholder="Name..." value={name} onChange={(e) => setName(e.target.value)}/>
-            <p>Link to image</p>
-            <input type="text" placeholder="Link to image..." value={image} onChange={(e) => setImage(e.target.value)}/>
-            <p>Rate</p>
-            <div className="stars" style={{display: 'flex', flexDirection: 'row'}}>
-            {
-                stars.map((star, index) => {
-                    return (
-                        <div key={index} onClick={() => {
-                            const newRate = star.value
-                            setRate(newRate);
-                            setStars(stars.map(star => {
-                                if(star.value > newRate){
-                                    return {...star, color: "white"};
-                                }
-                                else{
-                                    return {...star, color: "gold"};
-                                }
-                            }));
-                        }}>
-                            <div style={{backgroundColor: star.color, border: '1px solid black', width: '10px', height:'10px'}}></div>
-                        </div>
+        <AddItemDiv>
+            <AddItemTitle style={{margin: '0'}}>Add item</AddItemTitle>
+            <FormItem>
+                <FormItemLabel>Name</FormItemLabel>
+                <FormItemInput type="text" placeholder="Name..." value={name} onChange={(e) => setName(e.target.value)}/>
+            </FormItem>
+            <FormItem>
+                <FormItemLabel>Link to image</FormItemLabel>
+                <FormItemInput type="text" placeholder="Link to image..." value={image} onChange={(e) => setImage(e.target.value)}/>
+            </FormItem>
+            <FormItem>
+                <FormItemLabel>Rate</FormItemLabel>
+                <div className="stars" style={{display: 'flex', flexDirection: 'row'}}>
+                {
+                    stars.map((star, index) => {
+                        return (
+                            <div key={index} onClick={() => {
+                                const newRate = star.value
+                                setRate(newRate);
+                                setStars(stars.map(star => {
+                                    if(star.value > newRate){
+                                        return {...star, color: "#aaaaaa"};
+                                    }
+                                    else{
+                                        return {...star, color: "#56203D"};
+                                    }
+                                }));
+                            }}>
+                                <StarDiv style={{backgroundColor: star.color}}></StarDiv>
+                            </div>
+                        )
+                    }
                     )
                 }
-                )
-            }
-            </div>
-            <p>Category</p>
-            <div className='categories' style={{display: 'flex', flexDirection: 'row'}}>
-            {
-                categories.map((tCategory, index) => {
-                    if(category === tCategory){
-                        return <div style={{border: '1px solid red', width: '100px'}} onClick={() => setCategory(tCategory)}>{tCategory}</div>
-                    }
-                    else{
-                        return <div style={{border: '1px solid black',  width: '100px'}} onClick={() => setCategory(tCategory)}>{tCategory}</div>
-                    }
-                })
-            }
-            </div>
-            <button onClick={handleSubmit}>Add</button>
-            
-        </div>
+                </div>
+            </FormItem>
+            <FormItem>
+                <FormItemLabel>Category</FormItemLabel>
+                <CategorySelectorDiv>
+                {
+                    categories.map((tCategory) => {
+                        if(category === tCategory){
+                            return <CategorySelector style={{color: "56203D", borderColor: "#56203D", fontWeight: '600'}} onClick={() => setCategory(tCategory)}>{tCategory}</CategorySelector>
+                        }
+                        else{
+                            return <CategorySelector onClick={() => setCategory(tCategory)}>{tCategory}</CategorySelector>
+                        }
+                    })
+                }
+                </CategorySelectorDiv>
+            </FormItem>
+            <FormButton onClick={handleSubmit}>Add</FormButton>
+            <LoginImages src={adding} alt=''/>
+        </AddItemDiv>
     );
 }
 export default Add;

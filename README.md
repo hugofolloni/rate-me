@@ -9,6 +9,7 @@
 - usuários também podem cadastrar produtos
 
 -> to do
-- criar css
+- criar css do produto (usando svg "shopping")
+- trocar imagem e titulo da página (la do seletor de abas)
 
 - criar api e banco de dados (api só pode ser acessada com chave)

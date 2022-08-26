@@ -93,24 +93,19 @@
       "id": 4
     },
     {
-      "name": "Microfone Shopee",
-      "created": "hugofolloni",
+      "name": "Webcam China",
+      "created": "hugofgua",
       "image": "asd",
       "comments": [],
       "category": "Electronics",
-      "rate": 7,
+      "rate": [
+        {
+          "rate": 5,
+          "user": "hugofgua"
+        }
+      ],
       "number_of_rates": 1,
-      "id": 5
-    },
-    {
-      "id": 6,
-      "name": "Webcam China",
-      "created": "hugofolloni",
-      "image": "asdasd",
-      "comments": [],
-      "category": "Electronics",
-      "rate": 6.666666666666667,
-      "number_of_rates": 3
+      "id": 7
     }
   ],
   "users": [

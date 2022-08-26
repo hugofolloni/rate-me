@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { HeaderDiv, Input, LinkButton, Title, UserInfo, UserInfoP } from '../styles/styles';
 
 const Header: React.FC = () => {
    
@@ -25,14 +26,13 @@ const Header: React.FC = () => {
     } , []);
 
     return (
-        <div>
-            Rate.me
-            <input type="text"  onChange={(e) => setSearch(e.target.value)}/> 
-            <button onClick={handleSearch}>Search</button>
-            {username === "" ? <a href='/login'>Login</a> : <div><p>Welcome, {username}</p><a href='/login'>Logout</a></div>}
-            {username !== "" ? <a href='/add'>Add</a> : <div></div>}
+        <HeaderDiv>
+            <a href="/"><Title>rate.me</Title></a>
+            <Input placeholder="Search..." type="text"  onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => {if(e.key === "Enter"){handleSearch()}}}/> 
+            {username !== "" ? <LinkButton href='/add'>Add item</LinkButton> : <div></div>}
+            {username === "" ? <LinkButton href='/login'>Login</LinkButton> : <UserInfo><UserInfoP>Welcome, {username}</UserInfoP><LinkButton href='/login'>Logout</LinkButton></UserInfo>}
             
-        </div>
+        </HeaderDiv>
     );
 }
 

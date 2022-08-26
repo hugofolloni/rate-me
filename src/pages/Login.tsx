@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { LoginContainer, LoginTitle, CreateAccountLink, FormItem, FormItemLabel, FormItemInput, LoginDiv, FormButton, LoginImages} from '../styles/styles';
+import astro from '../assets/astro.svg';
 
 const Login: React.FC = () => {
 
@@ -34,15 +36,22 @@ const Login: React.FC = () => {
 
 
     return (
-        <div>
-            <h1>Login</h1>
-            <h3>Username</h3>
-            <input type="text" placeholder='login' value={username} onChange={(e) => setUsername(e.target.value)}/>
-            <h3>Password</h3>
-            <input type="password" placeholder='password'  value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <button onClick={() => checkLogin()}>Login</button>
-            <a href="/register">Don't have an account? Register here</a>
-        </div>
+        <LoginDiv>   
+            <LoginContainer>
+                <LoginTitle>Login</LoginTitle>
+                <FormItem>
+                    <FormItemLabel>Username</FormItemLabel>
+                    <FormItemInput type="text" placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+                </FormItem>
+                <FormItem>
+                    <FormItemLabel>Password</FormItemLabel>
+                    <FormItemInput type="password" placeholder='Password'  value={password} onChange={(e) => setPassword(e.target.value)}/>
+                </FormItem>
+                <FormButton onClick={() => checkLogin()}>Login</FormButton>
+            </LoginContainer>
+            <CreateAccountLink href="/register">Don't have an account? Register here</CreateAccountLink>
+            <LoginImages src={astro} alt=''/>
+        </LoginDiv>
     );
 }
 

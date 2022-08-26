@@ -1,5 +1,8 @@
 import {useState} from 'react';
 import { sha1, sha256, sha512 } from 'crypto-hash';
+import { LoginImages, LoginContainer, LoginTitle, FormItem, FormItemLabel, FormItemInput, LoginDiv, FormButton} from '../styles/styles';
+import aircraft from '../assets/aircraft.svg';
+
 
 const Register: React.FC = () => {
     
@@ -58,16 +61,25 @@ const Register: React.FC = () => {
     }
 
     return ( 
-        <div>
-            <h1>Register</h1>
-            <h3>Username</h3>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
-            <h3>Email</h3>
-            <input type="email"  value={email} onChange={(e) => setEmail(e.target.value)}/>
-            <h3>Password</h3>
-            <input type="password"  value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <button onClick={() => createAccount()}>Register</button>
-        </div>
+        <LoginDiv>   
+        <LoginContainer>
+            <LoginTitle>Register</LoginTitle>
+            <FormItem>
+                <FormItemLabel>Username</FormItemLabel>
+                <FormItemInput type="text" placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+            </FormItem>
+            <FormItem>
+                <FormItemLabel>Email</FormItemLabel>
+                <FormItemInput type="email" placeholder='Email'  value={email} onChange={(e) => setEmail(e.target.value)}/>
+            </FormItem>
+            <FormItem>
+                <FormItemLabel>Password</FormItemLabel>
+                <FormItemInput type="password" placeholder='Password'  value={password} onChange={(e) => setPassword(e.target.value)}/>
+            </FormItem>
+            <FormButton onClick={() => createAccount()}>Register</FormButton>
+            </LoginContainer>
+            <LoginImages src={aircraft} alt=''/>
+        </LoginDiv>
     );
     	
 }
