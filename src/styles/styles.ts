@@ -388,7 +388,6 @@ export const LoginDiv = styled.div`
     position: relative;
 `
 
-
 export const LoginTitle = styled(QueryDisplay)`
     margin: 0;
 `;
@@ -399,3 +398,202 @@ export const CreateAccountLink = styled.a`
 export const LoginImages = styled(CartImage)`
     margin-top: 140px;
     `
+
+export const ProductDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    position: relative;
+    background-color: #56203D;
+    margin-top: -10px;
+`
+
+export const ProductContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 90%;
+    padding: 4vw;
+    margin-top: -1vw;
+    height: calc(100vh - 130px);
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    background-color: #fff;
+`
+
+export const ProductTitle = styled(QueryDisplay)`
+    margin: 0;
+    margin-top: 20px;
+`
+
+export const ProductImage = styled.img`
+    max-width: 400px;
+    max-height: 400px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: calc(30% - 200px) 30px;
+    transition: 0.3s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+`
+
+export const ProductRate = styled.p`
+    font-size: 32px;
+    color: #56203D;
+    font-weight: 500;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 50px 100px;
+    `
+
+export const ReviewDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 20px;
+`
+
+export const StarsDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+`
+
+export const CommentsDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: #56203D;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    border-radius: 5px;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 350px;
+`
+
+export const SingleComment = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+`
+
+export const CommentTitle = styled.h1`
+    font-size: 18px;
+    color: #56203D;
+    font-weight: 600;
+    margin: 0;
+    margin-left: 10px;
+`
+
+export const CommentText = styled.p`
+    font-size: 15px;
+    color: #111;
+    font-weight: 400;
+    margin: 0;
+`
+
+export const AddCommentButton =  styled.button`
+    width: 180px;
+    height: 50px;
+    border: 2px solid #56203D;
+    border-radius: 5px;
+    background-color: #56203D;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #fff;
+        color: #56203D;
+    }
+`;
+
+export const TranslucentBackground = styled.div`
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    margin-left: -5vw;
+    height: calc(100vh - 93px);
+    background-color: rgba(0,0,0,0.5);
+`
+
+export const AddCommentDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 60%;
+    justify-content: space-around;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    margin-left: 20vw;
+    margin-top: 15vh;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5)
+`
+
+export const AddCommentTitle = styled(QueryDisplay)`
+    margin: 5px 5%;
+`
+
+export const AddCommentText = styled.textarea`
+    width: 90%;
+    height: 50%;
+    border: 2px solid #56203D;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+    margin: 5px 5%;
+    resize: none;
+`
+
+export const AddInsideCommentButton = styled.button`
+    width: 180px;
+    height: 50px;
+    border: 2px solid #56203D;
+    border-radius: 5px;
+    background-color: #56203D;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+    margin-left: 68.5%;
+
+    &:hover {
+        background-color: #fff;
+        color: #56203D;
+    }
+`;
+
+

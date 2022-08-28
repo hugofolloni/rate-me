@@ -5,7 +5,7 @@
 - isso tudo salvo num bd 
 - de alguma forma categorizar os produtos
 - usuários também podem cadastrar produtos
-
+  
 -> to do
 - criar css do produto (usando svg "shopping")
 - trocar imagem e titulo da página (la do seletor de abas)

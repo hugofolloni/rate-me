@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AddCommentTitle, AddCommentButton, AddCommentDiv, CommentsDiv, CommentText, CommentTitle, ProductContainer, ProductDiv, ProductImage, ProductRate, ProductTitle, ReviewDiv, SingleComment, StarDiv, StarsDiv, TranslucentBackground, AddCommentText, AddInsideCommentButton } from "../styles/styles";
 
 const Product: React.FC = () => {
 
@@ -31,16 +32,16 @@ const Product: React.FC = () => {
     const [rateArray, setRateArray] = useState<Rate[]>([]);
 
     const [stars, setStars] = useState<Star[]>([
-        { value: 1, color: "white" },
-        { value: 2, color: "white" },
-        { value: 3, color: "white" },
-        { value: 4, color: "white" },
-        { value: 5, color: "white" },
-        { value: 6, color: "white" },
-        { value: 7, color: "white" },
-        { value: 8, color: "white" },
-        { value: 9, color: "white" },
-        { value: 10, color: "white" },
+        { value: 1, color: "#aaaaaa" },
+        { value: 2, color: "#aaaaaa" },
+        { value: 3, color: "#aaaaaa" },
+        { value: 4, color: "#aaaaaa" },
+        { value: 5, color: "#aaaaaa" },
+        { value: 6, color: "#aaaaaa" },
+        { value: 7, color: "#aaaaaa" },
+        { value: 8, color: "#aaaaaa" },
+        { value: 9, color: "#aaaaaa" },
+        { value: 10, color: "#aaaaaa" },
     ]);
 
     const [product, setProduct] = useState<Product>();
@@ -53,7 +54,7 @@ const Product: React.FC = () => {
             const product = data;
             var commentList: Comments [] = [];
             for(let i = 0; i < product.comments.length; i++) {
-                const comment = {user: product.comments[i].user, comment: product.comments[i].text};
+                const comment = {user: product.comments[i].user, comment: product.comments[i].comment};
                 commentList.push(comment);
             }
             const rate = product.rate.reduce((a:number, b:Rate) => a + b.rate, 0) / product.rate.length;
@@ -156,51 +157,61 @@ const Product: React.FC = () => {
     }
 
     return (
-        <div>
-            <div>
-                <p>{product?.name}</p>
-                <img src={product?.image} alt={product?.name}/>
-                <p>{Math.round(Number(product?.rate)) /2} stars</p>
+        <ProductDiv>
+            <ProductContainer>
+                <ProductTitle>{product?.name}</ProductTitle>
+                <ProductImage src={product?.image} alt={product?.name}/>
+                <ProductRate>{Math.round(Number(product?.rate)) /2} stars</ProductRate>
+                { username !== "" ? 
+                    <ReviewDiv>
+                        <h3>Review:</h3>
+                        <StarsDiv>
+                            {
+                                
+                                stars.map((star, index) => {
+                                    return (
+                                        <div key={index} onClick={() => {
+                                            const newRate = star.value
+                                            addRate(newRate);
+                                            setStars(stars.map(star => {
+                                            if(star.value > newRate){
+                                                return {...star, color: "#aaaaaa"};
+                                            }
+                                            else{
+                                                return {...star, color: "#56203D"};
+                                            }
+                                        }));
+                                    }}>
+                                        <StarDiv style={{backgroundColor: star.color}}></StarDiv>
+                                        </div>
+                                    )
+                                }
+                                )
+                            }
+                        </StarsDiv>
+                    </ReviewDiv> : <div></div>
+                }
+                <CommentsDiv>
                 {
                     product?.comments.map(comment => (
-                        <div key={comment.user + comment.comment}>
-                            <p>{comment.user}</p>
-                            <p>{comment.comment}</p>
-                        </div>
+                        <SingleComment key={comment.user + comment.comment}>
+                            <CommentTitle>{comment.user}</CommentTitle>
+                            <CommentText>{comment.comment}</CommentText>
+                        </SingleComment>
                     ))
                 }        
-                { username !== "" ? <p onClick={() => setAddNote(true)}>Adicionar comentário</p> : <div></div>}    
+                </CommentsDiv>
+                { username !== "" ? <AddCommentButton onClick={() => setAddNote(true)}>Adicionar comentário</AddCommentButton> : <div></div>}    
                 { addNote ? <div>
-                    <input type="text" value={note} onChange={(e) => setNote(e.target.value)}/>
-                    <button onClick={() => handleAddComment()}>Adicionar</button>
+                    <TranslucentBackground onClick={() => setAddNote(false)}></TranslucentBackground>
+                    <AddCommentDiv>
+                        <AddCommentTitle>Add a comment</AddCommentTitle>
+                        <AddCommentText value={note} onChange={(e) => setNote(e.target.value)}/>
+                        <AddInsideCommentButton onClick={() => handleAddComment()}>Adicionar</AddInsideCommentButton>
+                    </AddCommentDiv>
                 </div> : <div></div>}
-                { username !== "" ? 
-                   <div className="stars" style={{display: 'flex', flexDirection: 'row'}}>
-                   {
-                       stars.map((star, index) => {
-                           return (
-                               <div key={index} onClick={() => {
-                                   const newRate = star.value
-                                   addRate(newRate);
-                                   setStars(stars.map(star => {
-                                       if(star.value > newRate){
-                                           return {...star, color: "white"};
-                                       }
-                                       else{
-                                           return {...star, color: "gold"};
-                                       }
-                                   }));
-                               }}>
-                                   <div style={{backgroundColor: star.color, border: '1px solid black', width: '10px', height:'10px'}}></div>
-                               </div>
-                           )
-                       }
-                       )
-                   }
-                   </div> : <div></div>
-                }
-            </div>
-        </div>
+            </ProductContainer>
+        </ProductDiv>
     );
 }
 
